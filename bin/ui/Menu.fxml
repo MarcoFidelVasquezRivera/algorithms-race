@@ -8,39 +8,44 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="642.0" style="-fx-background-image: url('file:images/background.jpg');" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="642.0" style="-fx-background-image: url('file:images/background.jpg');" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MenuGUI">
    <children>
-      <TextField layoutX="74.0" layoutY="37.0" prefHeight="25.0" prefWidth="211.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="155.0" layoutX="351.0" layoutY="136.0" stroke="BLACK" strokeType="INSIDE" width="263.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="94.0" layoutX="351.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="279.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="200.0" layoutX="190.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="200.0" layoutX="62.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
+      <TextField fx:id="nNumbers" layoutX="74.0" layoutY="37.0" prefHeight="25.0" prefWidth="211.0" />
       <Label layoutX="46.0" layoutY="32.0" prefHeight="30.0" prefWidth="31.0" text="N:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="80.0" layoutY="93.0" text="Algorithm" />
-      <Label layoutX="202.0" layoutY="93.0" stylesheets="@Style.css" text="Mode" />
-      <Label layoutX="388.0" layoutY="42.0" text="TimeKeeper" />
-      <Label layoutX="388.0" layoutY="140.0" text="Final results" />
-      <Button layoutX="197.0" layoutY="233.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="Run!">
+      <Label layoutX="61.0" layoutY="93.0" styleClass="titles" text="Algorithm" />
+      <Label layoutX="189.0" layoutY="92.0" styleClass="titles" stylesheets="@Style.css" text="Mode" />
+      <Label layoutX="349.0" layoutY="26.0" styleClass="titles" text="TimeKeeper" />
+      <Label layoutX="349.0" layoutY="135.0" styleClass="titles" text="Final results" />
+      <Button layoutX="203.0" layoutY="253.0" mnemonicParsing="false" onAction="#run" prefHeight="25.0" prefWidth="94.0" text="Run!">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <RadioButton layoutX="74.0" layoutY="131.0" mnemonicParsing="false" text="Add">
          <toggleGroup>
-            <ToggleGroup fx:id="Algorithm" />
+            <ToggleGroup fx:id="algorithm" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="74.0" layoutY="177.0" mnemonicParsing="false" text="Search" toggleGroup="$Algorithm" />
-      <RadioButton layoutX="74.0" layoutY="224.0" mnemonicParsing="false" text="Delete" toggleGroup="$Algorithm" />
-      <RadioButton layoutX="198.0" layoutY="131.0" mnemonicParsing="false" text="RadioButton">
+      <RadioButton layoutX="74.0" layoutY="177.0" mnemonicParsing="false" text="Search" toggleGroup="$algorithm" />
+      <RadioButton layoutX="74.0" layoutY="224.0" mnemonicParsing="false" text="Delete" toggleGroup="$algorithm" />
+      <RadioButton layoutX="198.0" layoutY="131.0" mnemonicParsing="false" text="Recursive">
          <toggleGroup>
             <ToggleGroup fx:id="mode" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="197.0" layoutY="177.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$mode" />
-      <Label layoutX="388.0" layoutY="69.0" prefHeight="35.0" prefWidth="129.0" text="00:00:000">
+      <RadioButton layoutX="197.0" layoutY="177.0" mnemonicParsing="false" text="Iterative" toggleGroup="$mode" />
+      <Label fx:id="timeKeeper" layoutX="388.0" layoutY="69.0" prefHeight="35.0" prefWidth="129.0" text="00:00:000">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -48,11 +53,11 @@
       <Label layoutX="387.0" layoutY="223.0" text="ArrayList" />
       <Label layoutX="473.0" layoutY="223.0" text="LinkedList" />
       <Label layoutX="571.0" layoutY="223.0" text="ABB" />
-      <Circle fill="DODGERBLUE" layoutX="571.0" layoutY="91.0" radius="36.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#f5f5f5" layoutX="571.0" layoutY="91.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="385.0" layoutY="247.0" text="00:00:000" />
-      <Label layoutX="474.0" layoutY="247.0" text="00:00:000" />
-      <Label layoutX="557.0" layoutY="247.0" text="00:00:000" />
+      <Circle fx:id="ball0" fill="#1f93ff00" layoutX="565.0" layoutY="74.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="ball1" fill="#f5f5f500" layoutX="565.0" layoutY="74.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="arrayTIme" layoutX="385.0" layoutY="247.0" />
+      <Label fx:id="listTime" layoutX="474.0" layoutY="247.0" />
+      <Label fx:id="treeTime" layoutX="557.0" layoutY="247.0" />
       <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="378.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="468.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="551.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />

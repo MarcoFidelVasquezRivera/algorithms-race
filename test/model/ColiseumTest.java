@@ -16,12 +16,20 @@ public class ColiseumTest {
 	public void lookTest() {
 		setup1();
 		
-		long[] array = {2,5,1,34,5,2,5,235,3};
+		long[] array = {7,5,9,2,6,8,12,3,10};
 		
 		for(int i=0;i<array.length;i++) {
 			c.addBSTRecursive(array[i]);
 		}
-		System.out.println(c.searchBSTRecursive(235));
+		c.showBST();
+		System.out.println(c.deleteBSTIterative(100));
+		System.out.println("n");
+		c.showBST();
+		//System.out.println(c.deleteBSTIterative(8));
+		//System.out.println("n");
+		//c.showBST();
+
+
 	}
 	
 }

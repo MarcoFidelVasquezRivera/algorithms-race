@@ -3,13 +3,19 @@ package model;
 import java.util.ArrayList;
 
 public class Coliseum {
-	
+////////////////////////////////////////////////////////////////////////////////////
+//					ATTRIBUTES
+////////////////////////////////////////////////////////////////////////////////////
 	private ArrayList<Long> numbers;
 	private Number first = null;
 	private NumberBST parent = null;
-	
+	private Clock clock;
+////////////////////////////////////////////////////////////////////////////////////
+//					 METHODS
+////////////////////////////////////////////////////////////////////////////////////
 	public Coliseum() {
 		numbers = new ArrayList<Long>();
+		clock =  new Clock();
 	}
 	
 	public void addArrayList(long number) {
@@ -252,14 +258,288 @@ public class Coliseum {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
+	public boolean deleteArrayListIterative(long n) {
+		boolean deleted = false;
+		boolean flag = true;
+		
+		for(int i=0;i< numbers.size() && flag;i++) {
+			if(numbers.get(i)==n) {
+				numbers.remove(i);
+				deleted = true;
+				flag = false;
+			}
+		}
+		
+		return deleted;
+	}
+	
+	public boolean deleteArrayListRecursive(long n) {
+		boolean deleted = false;
+		
+		if(!numbers.isEmpty()) {
+			deleted = deleteArrayListRecursive(0,n);
+		}
+				
+		return deleted;
+	}
+	
+	private boolean deleteArrayListRecursive(int p,long n) {
+		
+		if(p<numbers.size()) {
+			if(numbers.get(p)==n) {
+				numbers.remove(p);
+				return true;
+			}else {
+				return deleteArrayListRecursive(p+1,n);
+			}
+		}else {
+			return false;
+		}
+		
+	}
+	
+	public boolean deleteLinkedListIterative(long n) {
+		boolean deleted = false;
+		
+		if(first!=null) {
+			if(first.getNumber()==n){
+				Number next = first.getNext();
+				next.setPrev(null);
+				first = next;
+				deleted = true;
+			}else {
+				Number current = first;
+				boolean flag = true;
+				
+				while(current!=null && flag) {
+					
+					if(current.getNumber()==n) {
+						if(current.getNext()==null) {
+							Number prev = current.getPrev();
+							prev.setNext(null);
+						}else {
+							System.out.println();
+							Number prev = current.getPrev();
+							Number next = current.getNext();
+							prev.setNext(next);
+							next.setPrev(prev);
+						}
+						deleted = true;
+						flag = false;
+					}else {
+						current = current.getNext();
+					}
+				}	
+			}
+		}
+		return deleted;
+	}
+	
+	public boolean deleteLinkedListRecursive(long n) {
+		boolean deleted = false;
+		
+		if(first!=null) {
+			if(first.getNumber()==n) {
+				Number next = first.getNext();
+				next.setPrev(null);
+				first = next;
+				deleted = true;
+			}else {
+				deleted = deleteLinkedListRecursive(first.getNext(), n);
+			}
+		}
+		
+		return deleted;
+	}
+	
+	private boolean deleteLinkedListRecursive(Number c,long n) {
+		System.out.println("nnnn");
+		if(c.getNumber()==n) {
+			if(c.getNext()==null) {
+				Number prev = c.getPrev();
+				prev.setNext(null);
+			
+			}else {
+				Number next = c.getNext();
+				Number prev = c.getPrev();
+				prev.setNext(next);
+				next.setPrev(prev);
+			}
+			return true;
+		}else {
+			if(c.getNext()==null) {
+				return false;
+			}else {
+				return deleteLinkedListRecursive(c.getNext(), n);
+			}
+		}
+		
+	}
 	
 	
+	public boolean deleteBSTIterative(long n) {
+		boolean deleted = false;
+
+		if(parent!=null) {
+			NumberBST current = parent;
+			boolean flag = true;
+
+			while(current!=null && flag) {
+				if(current.getNumber()==n) {
+
+					if(current.getLeft()==null && current.getRight()==null) {
+						deleteBSTLeaf(current);
+						
+					}else if(current.getLeft()==null || current.getRight()==null) {
+						deleteBSTWithOneChild(current);
+
+					}else {
+						deleteBSTWithTwoChindren(current);
+
+					}
+					deleted = true;
+					flag = false;
+				}
+				if(current.getNumber()<n) {
+					current = current.getRight();
+				}else {
+					current = current.getLeft();
+				}
+			}
+		}
+		return deleted;
+	}
 	
+	private NumberBST searchMaxNumberIterative(NumberBST current) {
+		
+		while(current!=null) {
+			if(current.getRight()!=null) {
+				current = current.getRight();
+			}else {
+				return current;
+			}
+		}
+		return null;
+	}
 	
+	private void deleteBSTLeaf(NumberBST toDelete) {
+		if(toDelete==parent){
+			parent = null;	
+		}else{
+			NumberBST p = toDelete.getparent();
+			if(p.getLeft()==toDelete) {
+				p.setLeft(null);
+			}else {
+				p.setRight(null);
+			}
+		}
+	}
 	
+	private void deleteBSTWithOneChild(NumberBST toDelete) {
+		if(toDelete.getLeft()==null) {
+			NumberBST p = toDelete.getparent();
+			NumberBST rChild = toDelete.getRight();
+			if(toDelete==parent){
+				parent = rChild;
+			}else{
+				if(p.getLeft()==toDelete) {
+					p.setLeft(rChild);
+				}else {
+					p.setRight(rChild);
+				}	
+			}
+			rChild.setParent(p);
+
+		}else if(toDelete.getRight()==null) {
+
+			NumberBST p = toDelete.getparent();
+			NumberBST lChild = toDelete.getLeft();
+			if(toDelete==parent){
+				parent = lChild;
+			}else{
+				if(p.getLeft()==toDelete) {
+					p.setLeft(lChild);
+				}else {
+					p.setRight(lChild);
+				}	
+			}
+			lChild.setParent(p);
+		}
+	}
 	
+	public void deleteBSTWithTwoChindren(NumberBST toDelete) {
+		NumberBST max = searchMaxNumberIterative(toDelete.getLeft());
+		if(max.getLeft()==null && max.getRight()==null) {
+			deleteBSTLeaf(max);
+		}else {
+			deleteBSTWithOneChild(max);
+		}
+
+		NumberBST leftChild = toDelete.getLeft();
+		NumberBST rightChild = toDelete.getRight();
+		NumberBST currentParent = toDelete.getparent();
+		max.setLeft(leftChild);
+		max.setRight(rightChild);
+		max.setParent(currentParent);
+
+		if(rightChild!=null) {
+			rightChild.setParent(max);
+		}
+		if(leftChild!=null) {
+			leftChild.setParent(max);
+		}
+		if(currentParent!=null) {
+			if(currentParent.getLeft()==toDelete) {
+				currentParent.setLeft(max);
+			}else {
+				currentParent.setRight(max);
+			}
+		}
+		max.setParent(currentParent);
+		if(toDelete==parent) {
+			parent = max;
+		}
+	}
 	
+	public boolean deleteBSTRecursive(long n) {
+		boolean deleted = false;
+
+		if(parent!=null) {
+			deleted = deleteBSTRecursive(parent, n);
+		}
+		return deleted;
+	}
 	
+	private boolean deleteBSTRecursive(NumberBST current,long n) {
+		if(current!=null) {
+			if(current.getNumber()==n) {
+				if(current.getLeft()==null && current.getRight()==null) {
+					deleteBSTLeaf(current);
+				}else if(current.getLeft()==null || current.getRight()==null) {
+					deleteBSTWithOneChild(current);
+				}else {
+					deleteBSTWithTwoChindren(current);
+				}
+				return true;
+			}
+			if(current.getNumber()<n) {
+				return deleteBSTRecursive(current.getRight(),n);
+			}else {
+				return deleteBSTRecursive(current.getLeft(),n);
+			}
+		}
+		return false;
+	}
+	
+	public String runClock() {
+		clock.run();
+		
+		return clock.toString();
+	}
+	
+	public void initClock() {
+		clock.setInitTime();
+	}
 	
 	
 	
@@ -273,12 +553,14 @@ public class Coliseum {
 	}
 	
 	public void showNumberAdded() {
+		String message = ""; 
 		Number current = first;
 		
 		while(current!=null) {
-			System.out.println(current.getNumber());
+			message = message+";"+current.getNumber();
 			current = current.getNext();
 		}
+		System.out.println(message);
 	}
 	
 	public void showBST() {
@@ -294,6 +576,14 @@ public class Coliseum {
 		if(n.getRight()!=null) {
 			showBST(n.getRight());
 		}
+	}
+	
+	public void showArrayList() {
+		String message = "";
+		for(int i=0;i<numbers.size();i++) {
+			message = message+","+numbers.get(i);
+		}
+		System.out.println(message);
 	}
 	
 	

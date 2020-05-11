@@ -1,3 +1,17 @@
-.Label{
-	-fx-text-decoration-color: #ffffff;
+.label{
+	-fx-text-fill: white;
+}
+
+.radio-button{
+	-fx-text-fill: white;
+}
+
+.titles{
+	-fx-background-color:#D507C8;
+	-fx-padding: 3px; 
+	-fx-background-radius: 5px;
+}
+
+.rectangle{
+	-fx-background-color: rgba(255,255,255,1.0);
 }
