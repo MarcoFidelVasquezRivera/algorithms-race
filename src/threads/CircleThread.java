@@ -4,38 +4,40 @@ import javafx.application.Platform;
 import model.Coliseum;
 import ui.MenuGUI;
 
-public class ClockThread extends Thread{
+public class CircleThread extends Thread{
+
 	private MenuGUI menu;
 	private Coliseum coliseum;
-	private String time = "";
 	
-	public ClockThread(MenuGUI m,Coliseum c) {
+	
+	public CircleThread(MenuGUI m, Coliseum c) {
 		menu = m;
 		coliseum = c;
 	}
 	
+	
 	@Override
 	public void run() {
-		coliseum.initClock();
 		while(menu.isNotFinished()) {
-			time = coliseum.runClock();
+			
+			coliseum.calculateCirclesRadius();
 			
 			Platform.runLater(new Thread() {
 				
 				@Override
 				public void run() {
-					menu.setChronometer(time);
+					menu.updateCircles();
 				}
 				
 			});
-			
 			try {
-				Thread.sleep(0, 990);
+				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	
 }

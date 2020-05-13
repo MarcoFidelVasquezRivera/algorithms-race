@@ -22,52 +22,61 @@ public class BSTThread extends Thread{
 		operation = o;
 		
 	}
-	
+
 	@Override
 	public void run() {
-		
-		switch(operation) {
-			case 0:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.addBSTIterative(random.nextLong());
-				}
-				break;
-			case 1:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.addBSTRecursive(random.nextLong());
-				}
-				break;
-			case 2:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.searchBSTIterative(random.nextLong());
-				}
-				break;
-			case 3:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.searchBSTRecursive(random.nextLong());
-				}
-				break;
-			case 4:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.deleteBSTIterative(random.nextLong());
-				}
-				break;
-			case 5:
-				for(int i=0;i<nNumbers;i++) {
-					coliseum.deleteBSTRecursive(random.nextLong());
-				}
-				break;
-		}
-		
-		Platform.runLater(new Thread() {
-			
-			@Override
-			public void run() {
-				menu.setBSTTime();
+		try {
+			switch(operation) {
+				case 0:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.addBSTIterative(random.nextLong());
+					}
+					break;
+				case 1:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.addBSTRecursive(random.nextLong());
+					}
+					break;
+				case 2:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.searchBSTIterative(random.nextLong());
+					}
+					break;
+				case 3:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.searchBSTRecursive(random.nextLong());
+					}
+					break;
+				case 4:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.deleteBSTIterative(random.nextLong());
+					}
+					break;
+				case 5:
+					for(int i=0;i<nNumbers;i++) {
+						coliseum.deleteBSTRecursive(random.nextLong());
+					}
+					break;
 			}
-			
-		});
-		
+
+			Platform.runLater(new Thread() {
+
+				@Override
+				public void run() {
+					menu.setBSTTime();
+				}
+
+			});
+		}catch(StackOverflowError e) {
+			Platform.runLater(new Thread() {
+
+				@Override
+				public void run() {
+					menu.lostRace(2);
+				}
+
+			});
+		}
 	}
 	
 }

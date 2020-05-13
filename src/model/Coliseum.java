@@ -10,19 +10,21 @@ public class Coliseum {
 	private Number first = null;
 	private NumberBST parent = null;
 	private Clock clock;
+	private ArrayList<Circle> circles;
 ////////////////////////////////////////////////////////////////////////////////////
 //					 METHODS
 ////////////////////////////////////////////////////////////////////////////////////
 	public Coliseum() {
 		numbers = new ArrayList<Long>();
 		clock =  new Clock();
+		circles = new ArrayList<Circle>();
 	}
 	
 	public void addArrayList(long number) {
 		numbers.add(number);
 	}
 	
-	public void addLinkedListRecursive(long add) {
+	public void addLinkedListRecursive(long add) throws StackOverflowError {
 		if(first==null) {
 			Number n = new Number(add); 
 			first = n;
@@ -31,7 +33,7 @@ public class Coliseum {
 		}
 	}
 	
-	private void addLinkedListRecursive(Number current, long add) {
+	private void addLinkedListRecursive(Number current, long add) throws StackOverflowError{
 		
 		if(current.getNext()==null) {
 			Number n = new Number(add);
@@ -70,7 +72,7 @@ public class Coliseum {
 		
 	}
 	
-	public void addBSTRecursive(long add) {
+	public void addBSTRecursive(long add) throws StackOverflowError {
 		NumberBST n = new NumberBST(add);
 		
 		if(parent==null) {
@@ -80,7 +82,7 @@ public class Coliseum {
 		}
 	}
 	
-	private void addBSTRecursive(NumberBST current,NumberBST add) {
+	private void addBSTRecursive(NumberBST current,NumberBST add) throws StackOverflowError {
 		
 		if(add.getNumber()>current.getNumber()) {
 			if(current.getRight()!=null) {
@@ -147,7 +149,7 @@ public class Coliseum {
 		return isHere;
 	}
 	
-	public boolean searchArrayListRecursive(int p,long n) {
+	public boolean searchArrayListRecursive(int p,long n) throws StackOverflowError {
 		
 		if(p>numbers.size()-1) {
 			return false;
@@ -177,7 +179,7 @@ public class Coliseum {
 		return isHere;
 	}
 	
-	public boolean searchLinkedListRecursive(long n) {
+	public boolean searchLinkedListRecursive(long n) throws StackOverflowError {
 		boolean isHere = false;
 		if(first!=null) {
 			isHere=searchLinkedListRecursive(first,n);
@@ -185,7 +187,7 @@ public class Coliseum {
 		return isHere;
 	}
 	
-	private boolean searchLinkedListRecursive(Number current,long n) {
+	private boolean searchLinkedListRecursive(Number current,long n) throws StackOverflowError{
 		if(current.getNumber()==n) {
 			return true;
 		}else {
@@ -193,15 +195,16 @@ public class Coliseum {
 				return false;
 			}else {
 				return searchLinkedListRecursive(current.getNext(),n);
+				
 			}
 		}
 	}
 	
 	public boolean searchBSTIterative(long n) {
+
 		boolean isHere = false;
 
 		if(parent != null) {
-			System.out.println("entra");
 			NumberBST current = parent;
 			boolean flag = true;
 			
@@ -225,7 +228,8 @@ public class Coliseum {
 		return isHere;
 	}
 	
-	public boolean searchBSTRecursive(long n) {
+	public boolean searchBSTRecursive(long n) throws StackOverflowError {
+
 		boolean isHere = false;
 		
 		if(parent!=null) {
@@ -235,7 +239,7 @@ public class Coliseum {
 		return isHere;
 	}
 	
-	private boolean searchBSTRecursive(NumberBST current, long n) {
+	private boolean searchBSTRecursive(NumberBST current, long n) throws StackOverflowError {
 		
 		if(current.getNumber()==n) {
 			return true;
@@ -273,7 +277,7 @@ public class Coliseum {
 		return deleted;
 	}
 	
-	public boolean deleteArrayListRecursive(long n) {
+	public boolean deleteArrayListRecursive(long n) throws StackOverflowError {
 		boolean deleted = false;
 		
 		if(!numbers.isEmpty()) {
@@ -283,7 +287,7 @@ public class Coliseum {
 		return deleted;
 	}
 	
-	private boolean deleteArrayListRecursive(int p,long n) {
+	private boolean deleteArrayListRecursive(int p,long n) throws StackOverflowError {
 		
 		if(p<numbers.size()) {
 			if(numbers.get(p)==n) {
@@ -318,7 +322,6 @@ public class Coliseum {
 							Number prev = current.getPrev();
 							prev.setNext(null);
 						}else {
-							System.out.println();
 							Number prev = current.getPrev();
 							Number next = current.getNext();
 							prev.setNext(next);
@@ -335,7 +338,7 @@ public class Coliseum {
 		return deleted;
 	}
 	
-	public boolean deleteLinkedListRecursive(long n) {
+	public boolean deleteLinkedListRecursive(long n) throws StackOverflowError {
 		boolean deleted = false;
 		
 		if(first!=null) {
@@ -352,8 +355,7 @@ public class Coliseum {
 		return deleted;
 	}
 	
-	private boolean deleteLinkedListRecursive(Number c,long n) {
-		System.out.println("nnnn");
+	private boolean deleteLinkedListRecursive(Number c,long n) throws StackOverflowError {
 		if(c.getNumber()==n) {
 			if(c.getNext()==null) {
 				Number prev = c.getPrev();
@@ -501,7 +503,7 @@ public class Coliseum {
 		}
 	}
 	
-	public boolean deleteBSTRecursive(long n) {
+	public boolean deleteBSTRecursive(long n) throws StackOverflowError {
 		boolean deleted = false;
 
 		if(parent!=null) {
@@ -510,7 +512,7 @@ public class Coliseum {
 		return deleted;
 	}
 	
-	private boolean deleteBSTRecursive(NumberBST current,long n) {
+	private boolean deleteBSTRecursive(NumberBST current,long n) throws StackOverflowError {
 		if(current!=null) {
 			if(current.getNumber()==n) {
 				if(current.getLeft()==null && current.getRight()==null) {
@@ -541,8 +543,25 @@ public class Coliseum {
 		clock.setInitTime();
 	}
 	
+	public void reset() {
+		first = null;
+		parent = null;
+		numbers = new ArrayList<Long>();
+	}
 	
+	public void addCircle(double radius) {
+		circles.add(new Circle(radius));
+	}
 	
+	public void calculateCirclesRadius() {
+		for(int i=0;i<circles.size();i++) {
+			circles.get(i).calculateNewRadius();
+		}
+	}
+	
+	public ArrayList<Circle> getCircles() {
+		return circles;
+	}
 	
 	
 	

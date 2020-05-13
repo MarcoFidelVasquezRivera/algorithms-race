@@ -54,7 +54,7 @@
       <Label layoutX="473.0" layoutY="223.0" text="LinkedList" />
       <Label layoutX="571.0" layoutY="223.0" text="ABB" />
       <Circle fx:id="ball0" fill="#1f93ff00" layoutX="565.0" layoutY="74.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="ball1" fill="#f5f5f500" layoutX="565.0" layoutY="74.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="ball1" fill="#f5f5f500" layoutX="565.0" layoutY="74.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="arrayTIme" layoutX="385.0" layoutY="247.0" />
       <Label fx:id="listTime" layoutX="474.0" layoutY="247.0" />
       <Label fx:id="treeTime" layoutX="557.0" layoutY="247.0" />

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Clock {
 
