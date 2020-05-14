@@ -76,9 +76,11 @@ public class MenuGUI {
 					}else if(algorithmSelected.equalsIgnoreCase("search")) {
 						InitializerThread it = new InitializerThread(this, coliseum, numbers, 1);
 						it.start();
+						starting();
 					}else {
 						InitializerThread it = new InitializerThread(this, coliseum, numbers, 3);
 						it.start();
+						starting();
 					}
 					
 				}else {
@@ -87,9 +89,11 @@ public class MenuGUI {
 					}else if(algorithmSelected.equalsIgnoreCase("search")) {
 						InitializerThread it = new InitializerThread(this, coliseum, numbers, 0);
 						it.start();
+						starting();
 					}else {
 						InitializerThread it = new InitializerThread(this, coliseum, numbers, 2);
 						it.start();
+						starting();
 					}
 					
 				}	
@@ -154,6 +158,7 @@ public class MenuGUI {
 	}
 	
 	public void initAddRecursive(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -167,6 +172,7 @@ public class MenuGUI {
 	}
 	
 	public void initAddIterative(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -180,6 +186,7 @@ public class MenuGUI {
 	}
 	
 	public void initSearchRecursive(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -193,6 +200,7 @@ public class MenuGUI {
 	}
 	
 	public void initSearchIterative(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -207,6 +215,7 @@ public class MenuGUI {
 	}
 	////
 	public void initDeleteRecursive(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -220,6 +229,7 @@ public class MenuGUI {
 	}
 	
 	public void initDeleteIterative(long seed, int numbers) {
+		resetTimes();
 		CircleThread circleThread = new CircleThread(this,coliseum);
 		circleThread.start();
 		ClockThread ct = new ClockThread(this,coliseum);
@@ -236,6 +246,13 @@ public class MenuGUI {
 		arrayTIme.setText("");
 		listTime.setText("");
 		treeTime.setText("");
+		timeKeeper.setText("iniciando");
+	}
+	
+	public void starting() {
+		arrayTIme.setText("iniciando");
+		listTime.setText("iniciando");
+		treeTime.setText("iniciando");
 		timeKeeper.setText("iniciando");
 	}
 	

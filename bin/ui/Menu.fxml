@@ -5,6 +5,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
@@ -13,7 +14,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="642.0" style="-fx-background-image: url('file:images/background.jpg');" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MenuGUI">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="155.0" layoutX="351.0" layoutY="136.0" stroke="BLACK" strokeType="INSIDE" width="263.0" />
+      <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="367.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/img_0.png" />
+         </image></ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="155.0" layoutX="351.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" width="279.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="94.0" layoutX="351.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="279.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="200.0" layoutX="190.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff1a" height="200.0" layoutX="62.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
@@ -50,16 +55,21 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="387.0" layoutY="223.0" text="ArrayList" />
-      <Label layoutX="473.0" layoutY="223.0" text="LinkedList" />
-      <Label layoutX="571.0" layoutY="223.0" text="ABB" />
+      <Label layoutX="387.0" layoutY="232.0" text="ArrayList" />
+      <Label layoutX="473.0" layoutY="232.0" text="LinkedList" />
+      <Label layoutX="571.0" layoutY="232.0" text="ABB" />
       <Circle fx:id="ball0" fill="#1f93ff00" layoutX="565.0" layoutY="74.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="ball1" fill="#f5f5f500" layoutX="565.0" layoutY="74.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="arrayTIme" layoutX="385.0" layoutY="247.0" />
-      <Label fx:id="listTime" layoutX="474.0" layoutY="247.0" />
-      <Label fx:id="treeTime" layoutX="557.0" layoutY="247.0" />
-      <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="378.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="468.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="35.0" fitWidth="63.0" layoutX="551.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="arrayTIme" layoutX="385.0" layoutY="258.0" />
+      <Label fx:id="listTime" layoutX="474.0" layoutY="258.0" />
+      <Label fx:id="treeTime" layoutX="557.0" layoutY="258.0" />
+      <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="453.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/img_1.png" />
+         </image></ImageView>
+      <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="539.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/img_2.png" />
+         </image></ImageView>
    </children>
 </Pane>
